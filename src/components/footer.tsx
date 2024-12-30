@@ -88,7 +88,7 @@ const Footer = () => {
             Home
           </Link>
           <Link
-            href="/"
+            href="/portfolio?section=work"
             className="fontmed flex tablet:justify-center text-xl text-white  transition-all duration-300 transform hover:scale-125"
           >
             Compagnes

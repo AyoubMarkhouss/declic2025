@@ -120,7 +120,7 @@ export default function Portfolio() {
 
         {/* Conditional rendering of the sections */}
         {section === "work" ? (
-          <div className="columns-xs min-h-screen h-full laptop:columns-3 gap-10 mb-28">
+          <div className="columns-xs min-h-screen h-full laptop:columns-3 gap-20 mb-28">
             {work.slice(0, visibleWorks).map((g) => (
               <motion.div
                 className="mb-10 group break-inside-avoid"
@@ -178,7 +178,7 @@ export default function Portfolio() {
               >
                 <Image
                   alt="img"
-                  className="w-44 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
+                  className="w-40 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
                   width={1000}
                   height={1000}
                   src={client.image}

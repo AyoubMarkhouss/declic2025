@@ -2,30 +2,31 @@ import Image from "next/image";
 
 export default function Sheepsection() {
   return (
-    <div className="h-screen bg-white flex ">
+    <div className="relative h-screen bg-white flex overflow-hidden">
+      <div className="absolute inset-0">
+        <video
+          src="/goat-HD.mp4" // Replace with your GIF path in the public folder
+          autoPlay
+          loop
+          muted
+          className="object-cover absolute bottom-0 w-full h-full "
+          
+        />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-x-5  px-20">
         {/* Left Column: Heading */}
         <div className="col-span-1 pt-20">
           <h1 className="text-5xl absolute z-20 font-black leading-tight tracking-tight">
-            WHEN THE WORLD <br/> <span className="">ZIGS,</span>{" "}
-            <span className="text-red-500">ZAG.</span>
+            WHEN THE WORLD <br /> <span className="">ZIGS,</span>{" "}
+            <span className="text-redeclic">ZAG.</span>
           </h1>
-          
         </div>
 
         {/* Middle Column: Sheep GIF */}
-        <div className="col-span-2 relative -z-0  ">
-          <Image
-            src="/Sheep.gif" // Replace with your GIF path in the public folder
-            alt="Black Sheep"
-            width={400}
-            height={400}
-            className="object-contain absolute bottom-0 w-full"
-          />
-        </div>
+        <div className="col-span-2 relative "></div>
 
         {/* Right Column: Paragraphs */}
-        <div className="col-span-1 text-gray-700 text-md flex flex-col justify-center">
+        <div className="col-span-1 z-50 text-white text-md flex flex-col justify-center">
           <p className="">
             It’s easy to go with the grain, stick within the category codes and
             make your brand as frictionless as possible. It feels safe. And in

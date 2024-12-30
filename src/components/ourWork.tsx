@@ -5,7 +5,7 @@ import ViewMore from "~/components/icons/viewMore";
 const OurWork = () => {
   return (
     <div className="px-5 tablet:px-20 ">
-      <div className="items-center flex relative">
+      <div className="items-center flex relative ">
         <p style={{ fontWeight: 700 }} className="text-redeclic bigmobile:text-5xl tablet:text-9xl pb-5">
           OUR <br /> WORK
         </p>

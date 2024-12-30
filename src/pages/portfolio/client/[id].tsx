@@ -17,7 +17,7 @@ export default function Portfolio() {
   return (
     <>
       <div className="bigmobile:px-5 laptop:px-20 relative ">
-        <div className="h-60  flex flex-col justify-center items-center">
+        <div className="h-60 flex flex-col justify-center items-center">
           <h1 className="fontbold pb-3 bigmobile:text-3xl laptop:text-7xl text-redeclic">
             CAMPAGNES
           </h1>
