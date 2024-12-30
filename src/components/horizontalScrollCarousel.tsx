@@ -87,7 +87,7 @@ const Card = ({
   onHoverStart: () => void;
   onHoverEnd: () => void;
 }) => {
-  const isHovered = hoveredCardId === card.id;
+  // const isHovered = hoveredCardId === card.id;
   const isOtherHovered = hoveredCardId !== null && hoveredCardId !== card.id;
 
   return (
