@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 
 const Footer = () => {
-  const emptyArray = Array.from({ length: 5 });
+  // const emptyArray = Array.from({ length: 5 });
   // const duplicatedSlides = [...emptyArray, ...emptyArray];
   return (
     <div className=" px-5 tablet:px-20 w-full grid grid-cols-2 tablet:grid-cols-4 bg-gradient-to-b from-redeclic to-[#b0011c] ">
