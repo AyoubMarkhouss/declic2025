@@ -1,19 +1,17 @@
 import React from "react";
-import { motion } from "framer-motion";
+
 import Image from "next/image";
 import {
-  FaCopyright,
   FaFacebook,
   FaInstagram,
   FaLinkedin,
-  FaMailBulk,
   FaRegCopyright,
 } from "react-icons/fa";
 import Link from "next/link";
 
 const Footer = () => {
   const emptyArray = Array.from({ length: 5 });
-  const duplicatedSlides = [...emptyArray, ...emptyArray];
+  // const duplicatedSlides = [...emptyArray, ...emptyArray];
   return (
     <div className=" px-5 tablet:px-20 w-full grid grid-cols-2 tablet:grid-cols-4 bg-gradient-to-b from-redeclic to-[#b0011c] ">
       <div className="col-span-4 flex justify-center items-center py-5">
@@ -80,7 +78,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="col-span-4 py-10">
         <div className="grid col-span-2 tablet:grid-cols-4 ">
           <Link
