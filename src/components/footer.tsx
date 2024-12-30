@@ -1,33 +1,122 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import Image from "next/image";
+import {
+  FaCopyright,
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaMailBulk,
+  FaRegCopyright,
+} from "react-icons/fa";
+import Link from "next/link";
 
 const Footer = () => {
   const emptyArray = Array.from({ length: 5 });
   const duplicatedSlides = [...emptyArray, ...emptyArray];
   return (
-    <div className="w-full bg-gradient-to-b from-redeclic to-[#b0011c] space-y-80 mt-20">
-      <div className="flex items-center justify-between px-28 py-5">
-        <div>
-          <p className="uppercase">Say hi</p>
-          <p className="uppercase">agency@gmail.com</p>
-        </div>
-        {/* <div className="flex gap-10">
-          <div>
-            <p>TWITTER (X)</p>
-            <p>LINKEDIN</p>
-            <p>BEHANCE</p>
-          </div>
-          <button className="rounded-full relative">
-            <span className="rounded-full absolute h-20 w-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-2" />
-            <span className="">
-              BACK <br /> TO TOP
-            </span>
-          </button>
-        </div> */}
+    <div className=" px-5 tablet:px-20 w-full grid grid-cols-2 tablet:grid-cols-4 bg-gradient-to-b from-redeclic to-[#b0011c] ">
+      <div className="col-span-4 flex justify-center items-center py-5">
+        <Image
+          alt="declic"
+          src="/declic-white.png"
+          height={1500}
+          width={1500}
+          className="w-52"
+        />
       </div>
-      <div className="relative w-full overflow-hidden">
-        {/* Wrapping div for seamless looping */}
+      <div className="col-span-4 flex justify-between border-t-2 pt-10">
+        <div className="col-span-1">
+          <h2 className="fontmed text-2xl text-white ">
+            We are in this location
+          </h2>
+          <p className="text-gray-300">location, location 25</p>
+          <p className="text-gray-300">Casablanca, Maroc</p>
+        </div>
+        <div className="hidden tablet:block col-span-1">
+          <h2 className="fontmed text-2xl text-white ">Get in touch</h2>
+          <div className="flex items-center gap-x-4">
+            <div className="border-2 rounded-full p-1.5  group hover:bg-white">
+              <FaInstagram
+                size={20}
+                className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+              />
+            </div>
+            <div className="border-2 rounded-full p-1.5 group hover:bg-white">
+              <FaLinkedin
+                size={20}
+                className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+              />
+            </div>
+            <div className="border-2 rounded-full p-1.5 group hover:bg-white">
+              <FaFacebook
+                size={20}
+                className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="block tablet:hidden col-span-1 pt-5">
+        <h2 className="fontmed text-xl text-white ">Get in touch</h2>
+        <div className="flex items-center gap-x-4">
+          <div className="border-2 rounded-full p-1.5  group hover:bg-white">
+            <FaInstagram
+              size={20}
+              className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+            />
+          </div>
+          <div className="border-2 rounded-full p-1.5 group hover:bg-white">
+            <FaLinkedin
+              size={20}
+              className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+            />
+          </div>
+          <div className="border-2 rounded-full p-1.5 group hover:bg-white">
+            <FaFacebook
+              size={20}
+              className="fill-white group-hover:fill-black  transition-all duration-300 transform"
+            />
+          </div>
+        </div>
+      </div>
+      
+      <div className="col-span-4 py-10">
+        <div className="grid col-span-2 tablet:grid-cols-4 ">
+          <Link
+            href="/"
+            className="fontmed flex tablet:justify-center text-xl text-white  transition-all duration-300 transform hover:scale-125"
+          >
+            Home
+          </Link>
+          <Link
+            href="/"
+            className="fontmed flex tablet:justify-center text-xl text-white  transition-all duration-300 transform hover:scale-125"
+          >
+            Compagnes
+          </Link>
+          <Link
+            href="/"
+            className="fontmed flex tablet:justify-center text-xl text-white  transition-all duration-300 transform hover:scale-125"
+          >
+            About us
+          </Link>
+          <Link
+            href="/"
+            className="fontmed flex tablet:justify-center text-xl text-white  transition-all duration-300 transform hover:scale-125"
+          >
+            Contact us
+          </Link>
+        </div>
+      </div>
+      <div className="col-span-4 justify-center items-center pb-5">
+        <p className="flex items-center justify-center text-xs text-gray-200">
+          Declic Agency 2025 <FaRegCopyright className="" /> All Rights Reserved{" "}
+        </p>
+      </div>
+
+      {/* <div className="relative w-full overflow-hidden">
+        
         <motion.div
           className="flex"
           animate={{
@@ -39,7 +128,7 @@ const Footer = () => {
             },
           }}
         >
-          {/* Render duplicated slides */}
+   
           {duplicatedSlides.map((_, index) => (
             <div
               key={index}
@@ -52,7 +141,7 @@ const Footer = () => {
             </div>
           ))}
         </motion.div>
-      </div>
+      </div> */}
     </div>
   );
 };
