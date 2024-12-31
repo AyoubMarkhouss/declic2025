@@ -1,9 +1,10 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ReactNode, useRef, useState } from "react";
+import Link from "next/link";
+import { ReactNode, useRef, useState, useEffect } from "react";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-
+  const [showTabs, setShowTabs] = useState<boolean>(false);
   const transitions = [
     { delay: 0, duration: 0.1 },
     { delay: 0.1, duration: 0.2 },
@@ -12,23 +13,39 @@ const Header: React.FC = () => {
     { delay: 0.4, duration: 0.5 },
   ];
 
+  useEffect(() => {
+    if (open) {
+      const timer = setTimeout(() => {
+        setShowTabs(true);
+      }, 1 ); // Delay of 1 second
+      return () => clearTimeout(timer);
+    } else {
+      setShowTabs(false);
+    }
+  }, [open]);
+
   return (
     <div className="absolute w-full ">
       {open && (
-        <div className="absolute  z-50 w-full h-screen flex items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.7 }}
+          className="absolute z-50 w-full h-screen flex items-center justify-center"
+        >
           <SlideTabs />
-        </div>
+        </motion.div>
       )}
       <div className="flex absolute  top-0 left-0 w-full justify-between">
-        <p>the goat</p>
+        <p></p>
         <div className="z-50">
           <button
             onClick={() => setOpen(!open)}
             className="flex flex-col gap-2 z-50 bg-transparent group w-72 items-end pr-6 pt-6"
           >
-            <span className="w-12 h-1 bg-white rounded-full" />
-            <span className="w-7 h-1 bg-white rounded-full transition-all duration-300 group-hover:w-12" />
-        
+            <span className="w-12 h-1 bg-redeclic rounded-full" />
+            <span className="w-7 h-1 bg-redeclic rounded-full transition-all duration-300 group-hover:w-12" />
           </button>
         </div>
       </div>
@@ -65,7 +82,12 @@ const SlideTabs: React.FC = () => {
     opacity: 0,
   });
   const [activeTab, setActiveTab] = useState<number | null>(null); // No active tab initially
-
+  const pages = [
+    { name: "Home", href: "/" },
+    { name: "Compagnes", href: "/portfolio?section=work" },
+    { name: "About us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+  ];
   return (
     <ul
       onMouseLeave={() => {
@@ -76,14 +98,14 @@ const SlideTabs: React.FC = () => {
       }}
       className="fontmed relative mx-auto flex flex-col w-full text-center gap-5 p-1"
     >
-      {["Home", "Compagnes", "About us", "Contact"].map((tab, index) => (
+      {pages.map((page, index) => (
         <Tab
           key={index}
           setPosition={setPosition}
           isActive={activeTab === index}
           onClick={() => setActiveTab(index)}
         >
-          {tab}
+          <Link href={page.href}>{page.name}</Link>
         </Tab>
       ))}
       <Cursor position={position} />

@@ -5,6 +5,7 @@ import Footer from "~/components/footer";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
+import Header from "~/components/header-burger";
 // import { useRouter } from "next/router";
 
 export const clients = [
@@ -93,6 +94,7 @@ export default function Portfolio() {
 
   return (
     <>
+      <Header />
       <div className="bigmobile:px-5 laptop:px-20 relative min-h-screen h-full">
         <div className="h-60  flex flex-col justify-center items-center">
           <h1 className="fontbold pb-3 bigmobile:text-3xl laptop:text-7xl text-redeclic">
