@@ -4,7 +4,7 @@ import { ReactNode, useRef, useState, useEffect } from "react";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [showTabs, setShowTabs] = useState<boolean>(false);
+
   const transitions = [
     { delay: 0, duration: 0.1 },
     { delay: 0.1, duration: 0.2 },
@@ -12,17 +12,6 @@ const Header: React.FC = () => {
     { delay: 0.3, duration: 0.4 },
     { delay: 0.4, duration: 0.5 },
   ];
-
-  useEffect(() => {
-    if (open) {
-      const timer = setTimeout(() => {
-        setShowTabs(true);
-      }, 1 ); // Delay of 1 second
-      return () => clearTimeout(timer);
-    } else {
-      setShowTabs(false);
-    }
-  }, [open]);
 
   return (
     <div className="absolute w-full ">
