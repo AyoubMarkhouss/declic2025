@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { ReactNode, useRef, useState, useEffect } from "react";
+import { ReactNode, useRef, useState, } from "react";
 
 const Header: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
