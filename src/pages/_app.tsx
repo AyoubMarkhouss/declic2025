@@ -7,10 +7,10 @@ import { cn } from "~/utils";
 import { instrumentSans } from "../components";
 import { ReactLenis } from "../utils/Lenis";
 
-type MousePosition = {
-  x: number;
-  y: number;
-};
+// type MousePosition = {
+//   x: number;
+//   y: number;
+// };
 export default function App({ Component, pageProps }: AppProps) {
   // const [mousePosition, setMousePosition] = useState<MousePosition>({
   //   x: 0,

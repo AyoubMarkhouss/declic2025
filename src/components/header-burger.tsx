@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ReactNode, useEffect, useRef, useState } from "react";
 
 const Header: React.FC<{
@@ -130,7 +129,7 @@ const SlideTabs: React.FC = () => {
     opacity: 0,
   });
   const [activeTab, setActiveTab] = useState<number | null>(null); // No active tab initially
-  const router = useRouter();
+
 
   const pages = [
     { name: "Home", href: "/" },
