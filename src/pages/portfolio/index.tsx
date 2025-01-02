@@ -91,167 +91,169 @@ export default function Portfolio() {
   const loadMoreWorks = () => {
     setVisibleWorks((prev) => prev + 6); // Show 6 more works on each click
   };
-
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <>
-      <Header />
-      <div className="bigmobile:px-5 laptop:px-20 relative min-h-screen h-full">
-        <div className="h-60  flex flex-col justify-center items-center">
-          <h1 className="fontbold pb-3 bigmobile:text-3xl laptop:text-7xl text-redeclic">
-            CAMPAGNES
-          </h1>
-          <div className="flex gap-x-5">
-            <Link
-              href={"?section=work"}
-              className={`px-4 text-2xl py-2 rounded ${
-                section === "work" ? "text-redeclic" : "text-black"
-              }`}
-            >
-              Work
-            </Link>
-            <Link
-              href={"?section=client"}
-              className={`text-2xl px-4 py-2 rounded ${
-                section === "client" ? "text-redeclic" : "text-black"
-              }`}
-            >
-              Clients
-            </Link>
-          </div>
-        </div>
-
-        {/* Conditional rendering of the sections */}
-        {section === "work" ? (
-          <div className="columns-xs min-h-screen h-full laptop:columns-3 gap-20 mb-28">
-            {work.slice(0, visibleWorks).map((g) => (
-              <motion.div
-                className="mb-10 group break-inside-avoid"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-                key={g.title}
-              >
-                <Image
-                  className="opacity-80 hover:scale-105 hover:opacity-100 object-cover transition-all duration-300 transform"
-                  alt="500"
-                  src={g.image}
-                  width={500}
-                  height={500}
-                />
-                <div className="flex items-center group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
-                  <h1 className="fontmed group-hover:text-redeclic text-lg">
-                    {g.title}
-                  </h1>
-                  <FaChevronRight className="group-hover:fill-redeclic" />
-                </div>
-                <p className="text-sm group-hover:scale-105 transition-all duration-300 transform">
-                  {g.category}
-                </p>
-                <p className="text-xs group-hover:scale-105 transition-all duration-300 transform text-gray-400">
-                  {g.date}
-                </p>
-              </motion.div>
-            ))}
-            {visibleWorks < work.length && (
-              <button
-                className="fontmed absolute -bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-redeclic text-white"
-                onClick={loadMoreWorks}
-              >
-                View More
-              </button>
-            )}
-          </div>
-        ) : (
-          <></>
-        )}
-
-        {section === "client" ? (
-          <div className="grid grid-cols-4 gap-6 px-20 justify-center items-center">
-            {clients.map((client, index) => (
+      <Header open={open} setOpen={setOpen} />
+      <div className={`${open ? "" : "block"}`}>
+        <div className="bigmobile:px-5 laptop:px-20 relative min-h-screen h-full pt-20">
+          <div className="h-60  flex flex-col justify-center items-center">
+            <h1 className="fontbold pb-3 bigmobile:text-3xl laptop:text-7xl text-redeclic">
+              CAMPAGNES
+            </h1>
+            <div className="flex gap-x-5">
               <Link
-                href={`/portfolio/client/${client.title
-                  .split(" ")
-                  .join("_")
-                  .toLocaleLowerCase()}`}
-                key={index}
-                className="group flex justify-center items-center pb-10 cursor-pointer"
-                onClick={() => setSelectedClient(client)}
+                href={"?section=work"}
+                className={`px-4 text-2xl py-2 rounded ${
+                  section === "work" ? "text-redeclic" : "text-black"
+                }`}
               >
-                <Image
-                  alt="img"
-                  className="w-40 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
-                  width={1000}
-                  height={1000}
-                  src={client.image}
-                />
+                Work
               </Link>
-            ))}
-          </div>
-        ) : (
-          <></>
-        )}
-        {/* Client Details Section */}
-        {selectedClient && (
-          <div className="grid grid-cols-3 items-center py-10">
-            <div></div>
-            <div className="flex flex-col gap-y-5 items-center">
-              <Image
-                src={selectedClient.image}
-                alt="Selected Client"
-                width={300}
-                height={300}
-                className="mb-4 "
-              />
-              <h1 className="fontmed text-5xl py-3">
-                About {selectedClient.title}
-              </h1>
-              <p className="text-lg text-justify text-gray-700">
-                {selectedClient.description}
-              </p>
-
-              {work
-                .filter((k) => k.brand === selectedClient.title)
-                .map((g) => {
-                  return (
-                    <div
-                      className="mb-10 group break-inside-avoid"
-                      key={g.title}
-                    >
-                      <Image
-                        className="opacity-80 hover:scale-105 hover:opacity-100 object-cover transition-all duration-300 transform"
-                        alt="500"
-                        src={g.image}
-                        width={500}
-                        height={500}
-                      />
-                      <div className="flex items-center group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
-                        <h1 className="fontmed group-hover:text-redeclic text-lg">
-                          {g.title}
-                        </h1>
-                        <FaChevronRight className="group-hover:fill-redeclic" />
-                      </div>
-                      <p className="text-sm group-hover:scale-105 transition-all duration-300 transform">
-                        {g.category}
-                      </p>
-                      <p className="text-xs group-hover:scale-105 transition-all duration-300 transform text-gray-400">
-                        {g.date}
-                      </p>
-                    </div>
-                  );
-                })}
-              <button
-                className="fontmed mt-20 px-4 py-2 bg-redeclic hover:scale-95 transition-all duration-300 text-white"
-                onClick={() => setSelectedClient(null)}
+              <Link
+                href={"?section=client"}
+                className={`text-2xl px-4 py-2 rounded ${
+                  section === "client" ? "text-redeclic" : "text-black"
+                }`}
               >
-                Back to Clients
-              </button>
+                Clients
+              </Link>
             </div>
-            <div></div>
           </div>
-        )}
+
+          {/* Conditional rendering of the sections */}
+          {section === "work" ? (
+            <div className="columns-xs min-h-screen h-full laptop:columns-3 gap-20 mb-28">
+              {work.slice(0, visibleWorks).map((g) => (
+                <motion.div
+                  className="mb-10 group break-inside-avoid"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true }}
+                  key={g.title}
+                >
+                  <Image
+                    className="opacity-80 hover:scale-105 hover:opacity-100 object-cover transition-all duration-300 transform"
+                    alt="500"
+                    src={g.image}
+                    width={500}
+                    height={500}
+                  />
+                  <div className="flex items-center group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
+                    <h1 className="fontmed group-hover:text-redeclic text-lg">
+                      {g.title}
+                    </h1>
+                    <FaChevronRight className="group-hover:fill-redeclic" />
+                  </div>
+                  <p className="text-sm group-hover:scale-105 transition-all duration-300 transform">
+                    {g.category}
+                  </p>
+                  <p className="text-xs group-hover:scale-105 transition-all duration-300 transform text-gray-400">
+                    {g.date}
+                  </p>
+                </motion.div>
+              ))}
+              {visibleWorks < work.length && (
+                <button
+                  className="fontmed absolute -bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-redeclic text-white"
+                  onClick={loadMoreWorks}
+                >
+                  View More
+                </button>
+              )}
+            </div>
+          ) : (
+            <></>
+          )}
+
+          {section === "client" ? (
+            <div className="grid grid-cols-4 gap-6 px-20 justify-center items-center">
+              {clients.map((client, index) => (
+                <Link
+                  href={`/portfolio/client/${client.title
+                    .split(" ")
+                    .join("_")
+                    .toLocaleLowerCase()}`}
+                  key={index}
+                  className="group flex justify-center items-center pb-10 cursor-pointer"
+                  onClick={() => setSelectedClient(client)}
+                >
+                  <Image
+                    alt="img"
+                    className="w-40 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
+                    width={1000}
+                    height={1000}
+                    src={client.image}
+                  />
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <></>
+          )}
+          {/* Client Details Section */}
+          {selectedClient && (
+            <div className="grid grid-cols-3 items-center py-10">
+              <div></div>
+              <div className="flex flex-col gap-y-5 items-center">
+                <Image
+                  src={selectedClient.image}
+                  alt="Selected Client"
+                  width={300}
+                  height={300}
+                  className="mb-4 "
+                />
+                <h1 className="fontmed text-5xl py-3">
+                  About {selectedClient.title}
+                </h1>
+                <p className="text-lg text-justify text-gray-700">
+                  {selectedClient.description}
+                </p>
+
+                {work
+                  .filter((k) => k.brand === selectedClient.title)
+                  .map((g) => {
+                    return (
+                      <div
+                        className="mb-10 group break-inside-avoid"
+                        key={g.title}
+                      >
+                        <Image
+                          className="opacity-80 hover:scale-105 hover:opacity-100 object-cover transition-all duration-300 transform"
+                          alt="500"
+                          src={g.image}
+                          width={500}
+                          height={500}
+                        />
+                        <div className="flex items-center group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
+                          <h1 className="fontmed group-hover:text-redeclic text-lg">
+                            {g.title}
+                          </h1>
+                          <FaChevronRight className="group-hover:fill-redeclic" />
+                        </div>
+                        <p className="text-sm group-hover:scale-105 transition-all duration-300 transform">
+                          {g.category}
+                        </p>
+                        <p className="text-xs group-hover:scale-105 transition-all duration-300 transform text-gray-400">
+                          {g.date}
+                        </p>
+                      </div>
+                    );
+                  })}
+                <button
+                  className="fontmed mt-20 px-4 py-2 bg-redeclic hover:scale-95 transition-all duration-300 text-white"
+                  onClick={() => setSelectedClient(null)}
+                >
+                  Back to Clients
+                </button>
+              </div>
+              <div></div>
+            </div>
+          )}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }

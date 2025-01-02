@@ -5,7 +5,7 @@ const ViewMore = ({ className }: { className?: string }) => {
   return (
     <svg
       className={cn(
-        "fill-white border-black border bg-[#fff] size-28 rounded-full p-4 animate-spin-slow",
+        "fill-white bg-[#fff] size-28 rounded-full p-4 animate-spin-slow",
         className
       )}
       viewBox="0 0 100 100"
@@ -19,7 +19,7 @@ const ViewMore = ({ className }: { className?: string }) => {
       ></path>
       <text>
         <textPath
-          className="fill-black text-xl font-semibold"
+          className="fill-redeclic text-[19.5px] font-semibold "
           href="#curve-wnxkz4"
           startOffset="0"
           dominant-baseline="Central"

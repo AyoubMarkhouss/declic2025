@@ -1,9 +1,20 @@
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
-import { ReactNode, useRef, useState, } from "react";
+import { useRouter } from "next/navigation";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
-const Header: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
+const Header: React.FC<{
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ open, setOpen }) => {
+  // const [open, setOpen] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showLinks, setShowLinks] = useState(false);
+  const linkVariants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  };
 
   const transitions = [
     { delay: 0, duration: 0.1 },
@@ -12,26 +23,74 @@ const Header: React.FC = () => {
     { delay: 0.3, duration: 0.4 },
     { delay: 0.4, duration: 0.5 },
   ];
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
 
+    if (!isHovered && showLinks) {
+      timeout = setTimeout(() => {
+        setShowLinks(false);
+      }, 4000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [isHovered, showLinks]);
   return (
-    <div className="absolute w-full ">
+    <div className="fixed z-50 w-full">
       {open && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1.7 }}
-          className="absolute z-50 w-full h-screen flex items-center justify-center"
-        >
-          <SlideTabs />
-        </motion.div>
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.7 }}
+            className="fixed z-50 w-full h-screen flex items-center justify-center"
+          >
+            <SlideTabs />
+          </motion.div>
+        </AnimatePresence>
       )}
-      <div className="flex absolute  top-0 left-0 w-full justify-between">
-        <p></p>
-        <div className="z-50">
+      <div className="flex fixed z-50 top-0 left-0 w-full items-center justify-between py-6 px-10">
+        <div>
+          <Image
+            alt="logo"
+            src="/declic-red.png"
+            width={1000}
+            height={1000}
+            className="w-20 z-50"
+          />
+        </div>
+        <div className="z-50 flex gap-x-6 items-center">
+          {["Home", "About us", "Contact"].map((text, index) => (
+            <motion.div
+              key={index}
+              className="text-xl fontmed"
+              variants={linkVariants}
+              initial="hidden"
+              animate={isHovered || showLinks ? "visible" : "hidden"}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+                delay: index * 0.1,
+              }}
+            >
+              <Link
+                className="text-black  z-0"
+                href={text === "Home" ? "/portfolio?section=work" : "/"}
+              >
+                {text}
+              </Link>
+            </motion.div>
+          ))}
+
+          {/* Button */}
           <button
-            onClick={() => setOpen(!open)}
-            className="flex flex-col gap-2 z-50 bg-transparent group w-72 items-end pr-6 pt-6"
+            onMouseEnter={() => {
+              setIsHovered(true); // Set hover state to true
+              setShowLinks(true); // Show links when button is hovered
+            }}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setOpen(!open)} // Toggle menu
+            className="flex flex-col gap-2 z-50 bg-transparent group w-14 items-end"
           >
             <span className="w-12 h-1 bg-redeclic rounded-full" />
             <span className="w-7 h-1 bg-redeclic rounded-full transition-all duration-300 group-hover:w-12" />
@@ -48,7 +107,7 @@ const Header: React.FC = () => {
                 animate={{ height: "100vh" }}
                 exit={{ height: 0 }}
                 transition={{ ...transition, ease: "linear" }}
-                className="bg-black top-0 w-full h-7"
+                className="bg-black top-0 w-full h-7 z-50"
                 style={{ zIndex: transitions.length - index }} // Ensure proper stacking order
               />
             ))}
@@ -71,6 +130,8 @@ const SlideTabs: React.FC = () => {
     opacity: 0,
   });
   const [activeTab, setActiveTab] = useState<number | null>(null); // No active tab initially
+  const router = useRouter();
+
   const pages = [
     { name: "Home", href: "/" },
     { name: "Compagnes", href: "/portfolio?section=work" },
@@ -92,9 +153,11 @@ const SlideTabs: React.FC = () => {
           key={index}
           setPosition={setPosition}
           isActive={activeTab === index}
-          onClick={() => setActiveTab(index)}
+          onClick={() => {
+            setActiveTab(index);
+          }}
         >
-          <Link href={page.href}>{page.name}</Link>
+          <a className="w-full" href={page.href}>{page.name}</a>
         </Tab>
       ))}
       <Cursor position={position} />
@@ -128,7 +191,7 @@ const Tab: React.FC<{
         });
       }}
       onClick={onClick}
-      className={`relative group z-10 flex justify-center items-center cursor-pointer uppercase w-full text-7xl ${
+      className={`relative group h-20 z-10 flex justify-center items-center cursor-pointer uppercase w-full text-7xl ${
         isActive ? "bg-red-500 text-white" : "text-white"
       }`}
     >
@@ -146,7 +209,7 @@ const Cursor: React.FC<{
       animate={{
         ...position,
       }}
-      className="absolute z-0 h-20 w-full bg-redeclic text-center"
+      className="absolute z-0  h-20 w-full bg-redeclic text-center"
     />
   );
 };

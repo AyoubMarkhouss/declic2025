@@ -26,7 +26,7 @@ export default function Sheepsection() {
         <div className="col-span-2 relative "></div>
 
         {/* Right Column: Paragraphs */}
-        <div className="col-span-1 z-50 text-white text-md flex flex-col justify-center">
+        <div className="col-span-1 z-30 text-white text-md flex flex-col justify-center">
           <p className="">
             It’s easy to go with the grain, stick within the category codes and
             make your brand as frictionless as possible. It feels safe. And in

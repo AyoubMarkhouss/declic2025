@@ -3,6 +3,7 @@ import React, { useState, useRef } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 
 import Link from "next/link";
+import ViewMore from "./icons/viewMore";
 
 const HorizontalScrollCarousel = () => {
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
@@ -96,7 +97,10 @@ const Card = ({
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
     >
-      <div className="h-[450px] relative  shadow-lg overflow-hidden">
+      <div className="h-[450px] relative  group-hover:border-[10px] transition-all duration-300 transform group-hover:border-redeclic hover:cursor-pointer shadow-lg overflow-hidden">
+        <div className="px-5 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 group-hover:flex hidden z-[999999]">
+          <ViewMore />
+        </div>
         <motion.img
           src={card.url}
           width={500}
@@ -104,7 +108,7 @@ const Card = ({
           alt="images"
           className={`object-cover h-[450px] w-full transition-all duration-300 transform ${
             isOtherHovered
-              ? "brightness-50 scale-100"
+              ? "brightness-50 scale-100 "
               : "brightness-100 group-hover:scale-110"
           }`}
         />
