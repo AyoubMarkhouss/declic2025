@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 
-import { motion, useTransform, useScroll } from "framer-motion";
+import { motion, useInView, useTransform, useScroll } from "framer-motion";
 
 import Link from "next/link";
 import ViewMore from "./icons/viewMore";
+import { TextAnimate } from "./ui/text-animate";
 
 const HorizontalScrollCarousel = () => {
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
@@ -17,9 +18,16 @@ const HorizontalScrollCarousel = () => {
 
   return (
     <div>
-      <h1 className="fontmed text-7xl  bg-redeclic text-white h-24  px-20 flex  items-center">
+      {/* <h1 className="fontmed text-7xl  bg-redeclic text-white h-24  px-20 flex  items-center">
         OUR PROJETCS
-      </h1>
+      </h1> */}
+      <TextAnimate
+        animation="blurInUp"
+        by="character"
+        className="fontmed text-7xl  bg-redeclic text-white h-24  px-20 flex  items-center"
+      >
+        OUR PROJETCS
+      </TextAnimate>
       <section ref={targetRef} className=" relative h-[450vh] z-10">
         <div className="sticky laptop:top-0 desktop:top-20">
           <div className="absolute top-0  -z-10 h-[calc(100vh_-_50vh)] w-full left-0" />
@@ -90,29 +98,36 @@ const Card = ({
 }) => {
   // const isHovered = hoveredCardId === card.id;
   const isOtherHovered = hoveredCardId !== null && hoveredCardId !== card.id;
-
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <div
       className="group overflow-hidden object-contain relative flex flex-col gap-y-2 h-full bigmobile:w-96 tablet:w-[400px] z-10"
       onMouseEnter={onHoverStart}
       onMouseLeave={onHoverEnd}
     >
-      <div className="h-[450px] relative  group-hover:border-[10px] transition-all duration-300 transform group-hover:border-redeclic hover:cursor-pointer shadow-lg overflow-hidden">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, }}
+        animate={isInView ? { opacity: 1,  } : {}}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="h-[400px] relative  group-hover:border-[10px] transition-all duration-300 transform group-hover:border-redeclic hover:cursor-pointer shadow-lg overflow-hidden"
+      >
         <div className="px-5 absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 group-hover:flex hidden z-[999999]">
           <ViewMore />
         </div>
-        <motion.img
+        <img
           src={card.url}
           width={500}
           height={500}
           alt="images"
-          className={`object-cover h-[450px] w-full transition-all duration-300 transform ${
+          className={`object-cover h-[400px] w-full transition-all duration-300 transform ${
             isOtherHovered
               ? "brightness-50 scale-100 "
               : "brightness-100 group-hover:scale-110"
           }`}
         />
-      </div>
+      </motion.div>
 
       <h1
         className={`fontmed  text-4xl transition-colors duration-300 ${
@@ -134,22 +149,28 @@ const Card = ({
 
 const cards: CardType[] = [
   {
-    url: "https://framerusercontent.com/images/G9uxI6jiEckDae7icimChnY3M.png",
+    url: "/qnibila.jpg",
     title: "Flag Speciale Original",
     desc: "lorem impsum huba",
     id: 1,
   },
   {
-    url: "https://framerusercontent.com/images/ADvUsiYVpBSeLw1SyI90rXNyJ4.png",
+    url: "/gold.jpg",
     title: "Flag Speciale Gold",
     desc: "lorem impsum huba",
     id: 2,
   },
   {
-    url: "https://framerusercontent.com/images/Z0ejm2polTa8PyJBWWGlIsWAs.png",
+    url: "/casablancabeer.jpg",
     title: "Casablanca Beer",
     desc: "lorem impsum huba",
     id: 3,
+  },
+  {
+    url: "/stork.jpg",
+    title: "Stork",
+    desc: "lorem impsum huba",
+    id: 6,
   },
   {
     url: "https://framerusercontent.com/images/xrD1XEKUiPxzEfAp3NgFFX5Mbk.png",
@@ -157,12 +178,7 @@ const cards: CardType[] = [
     desc: "lorem impsum huba",
     id: 5,
   },
-  {
-    url: "https://framerusercontent.com/images/JZtV3h8a9e0wxiST1yOipwTpUKA.png",
-    title: "Stork",
-    desc: "lorem impsum huba",
-    id: 6,
-  },
+
   {
     url: "https://framerusercontent.com/images/63Ou8G3dAZyA7jCePWCbGXWT0.png",
     title: "Vins D'ici",

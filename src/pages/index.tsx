@@ -4,11 +4,12 @@ import Footer from "~/components/footer";
 
 import Herovideo from "~/components/herovideo";
 import Sheepsection from "~/components/sheepsection";
-import ExclusifProjects from "~/components/exclusifProjects";
+
 import Header from "~/components/header-burger";
 import { useState } from "react";
+import Bangers from "~/components/bangers";
 export default function Home() {
-   const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   return (
     <div>
       <Header open={open} setOpen={setOpen} />
@@ -16,7 +17,7 @@ export default function Home() {
         <Herovideo />
         <Sheepsection />
         <HorizontalScrollCarousel />
-        <ExclusifProjects />
+        <Bangers />
         <Footer />
       </div>
     </div>

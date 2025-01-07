@@ -1,7 +1,13 @@
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import { cn } from "~/utils";
 
 const Header: React.FC<{
   open: boolean;
@@ -22,6 +28,13 @@ const Header: React.FC<{
     { delay: 0.3, duration: 0.4 },
     { delay: 0.4, duration: 0.5 },
   ];
+  const [viva, setViva] = useState<number | undefined>();
+
+  const { scrollY } = useScroll();
+  useMotionValueEvent(scrollY, "change", (latest: number) => {
+    console.log({ latest });
+    setViva(latest);
+  });
   useEffect(() => {
     let timeout: NodeJS.Timeout;
 
@@ -34,7 +47,14 @@ const Header: React.FC<{
     return () => clearTimeout(timeout);
   }, [isHovered, showLinks]);
   return (
-    <div className="fixed z-50 w-full">
+    <div
+      className={cn(
+        "fixed top-0 z-50 w-full h-20",
+        viva && viva > 500
+          ? "transition-all transform ease-in-out duration-500  bg-white/100 backdrop-blur-md shadow-md"
+          : "transition-all transform ease-in-out duration-500 bg-transparent"
+      )}
+    >
       {open && (
         <AnimatePresence>
           <motion.div
@@ -130,7 +150,6 @@ const SlideTabs: React.FC = () => {
   });
   const [activeTab, setActiveTab] = useState<number | null>(null); // No active tab initially
 
-
   const pages = [
     { name: "Home", href: "/" },
     { name: "Compagnes", href: "/portfolio?section=work" },
@@ -156,7 +175,9 @@ const SlideTabs: React.FC = () => {
             setActiveTab(index);
           }}
         >
-          <a className="w-full" href={page.href}>{page.name}</a>
+          <a className="w-full" href={page.href}>
+            {page.name}
+          </a>
         </Tab>
       ))}
       <Cursor position={position} />

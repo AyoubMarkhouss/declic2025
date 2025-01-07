@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import Image from "next/image";
 import {
@@ -9,12 +9,22 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
+import { motion, useInView } from "framer-motion";
+
 const Footer = () => {
   // const emptyArray = Array.from({ length: 5 });
   // const duplicatedSlides = [...emptyArray, ...emptyArray];
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <div className=" px-5 tablet:px-20 w-full grid grid-cols-2 tablet:grid-cols-4 bg-gradient-to-b from-redeclic to-[#b0011c] ">
-      <div className="col-span-4 flex justify-center items-center py-5">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 0 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut", }}
+        className="col-span-4 flex justify-center items-center py-5"
+      >
         <Image
           alt="declic"
           src="/declic-white.png"
@@ -22,7 +32,7 @@ const Footer = () => {
           width={1500}
           className="w-52"
         />
-      </div>
+      </motion.div>
       <div className="col-span-4 flex justify-between border-t-2 pt-10">
         <div className="col-span-1">
           <h2 className="fontmed text-2xl text-white ">

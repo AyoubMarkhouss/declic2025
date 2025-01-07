@@ -96,12 +96,31 @@ export default function Portfolio() {
     <>
       <Header open={open} setOpen={setOpen} />
       <div className={`${open ? "" : "block"}`}>
-        <div className="bigmobile:px-5 laptop:px-20 relative min-h-screen h-full pt-20">
+        <div className="bigmobile:px-5 laptop:px-36 relative min-h-screen h-full pt-20">
           <div className="h-60  flex flex-col justify-center items-center">
-            <h1 className="fontbold pb-3 bigmobile:text-3xl laptop:text-7xl text-redeclic">
-              CAMPAGNES
-            </h1>
-            <div className="flex gap-x-5">
+            <motion.h1
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="fontbold pb-3 bigmobile:text-3xl text-center laptop:text-8xl desktop:text-9xl text-redeclic"
+            >
+              The Lab of Creativity
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="text-center max-w-[60%] pb-5"
+            >
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+              reprehenderit sit iste, dolores dolorum molestiae dicta explicabo!{" "}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="flex gap-x-5 pb-5"
+            >
               <Link
                 href={"?section=work"}
                 className={`px-4 text-2xl py-2 rounded ${
@@ -118,7 +137,7 @@ export default function Portfolio() {
               >
                 Clients
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           {/* Conditional rendering of the sections */}
@@ -251,6 +270,56 @@ export default function Portfolio() {
               <div></div>
             </div>
           )}
+        </div>
+        <div className="relative h-[470px] bg-white flex gap-y-7 flex-col justify-center items-center overflow-hidden">
+          <div className="absolute inset-0">
+            <video
+              src="/goat-HD.mp4" // Replace with your GIF path in the public folder
+              autoPlay
+              loop
+              muted
+              className="object-cover absolute bottom-0 w-full h-full "
+            />
+          </div>
+          {/* <div className="grid grid-cols-1 md:grid-cols-4 gap-x-5  px-20">
+            
+            <div className="col-span-1 pt-20">
+              <h1 className="text-5xl absolute z-20 font-black leading-tight tracking-tight">
+                WHEN THE WORLD <br /> <span className="">ZIGS,</span>{" "}
+                <span className="text-redeclic">ZAG.</span>
+              </h1>
+            </div>
+
+            
+            <div className="col-span-2 relative "></div>
+
+           
+            <div className="col-span-1 z-30 text-white text-md flex flex-col justify-center">
+              <p className="">
+                It’s easy to go with the grain, stick within the category codes
+                and make your brand as frictionless as possible. It feels safe.
+                And in an uncertain world, safety feels like a sensible
+                strategy.
+              </p>
+              <p className="">
+                But we believe the greatest risk is to stand still and fail to
+                stand out. It’s only the bold that get noticed and the brave
+                that get loved today. From your purpose to your point of sale,
+                it’s difference that will pay dividends. That is our belief, and
+                this is our promise: We will never offer you business as usual.
+                We will always build you a brand less ordinary – and far more
+                powerful.
+              </p>
+              <p className="text-black font-bold ">Welcome to BBH.</p>
+            </div>
+          </div> */}
+          <div className="bg-black/30 w-screen h-[470px] absolute"></div>
+          <h1 className="fontreg text-white text-center text-4xl z-10">
+            Innovative Minds, Creative Solutions <br /> Discover Déclic Agency
+          </h1>
+          <button className="z-10 border-2 text-white text-xl border-white hover:bg-redeclic hover:border-redeclic transition-all transform delay-100 px-5 py-3">
+            <a href="/">Discover</a>
+          </button>
         </div>
         <Footer />
       </div>
