@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import Header from "~/components/header-burger";
 import Footer from "~/components/footer";
@@ -15,18 +15,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "~/components/carousel";
+import { TextAnimate } from "~/components/ui/text-animate";
+import { motion, useInView } from "framer-motion";
 
 const Project = () => {
   const [open, setOpen] = useState<boolean>(false);
-
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   return (
     <>
       <Header open={open} setOpen={setOpen} />
       <div className={`${open ? "" : "block"}`}>
         <div className="pt-20  overflow-x-hidden">
-          <h1 className="fontmed text-7xl  px-20  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  flex  items-center">
+          <TextAnimate
+            animation="blurInUp"
+            by="character"
+            className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+          >
             Casablanca Beer
-          </h1>
+          </TextAnimate>
           <div className="w-screen relative h-[calc(100vh_-_176px)] flex justify-center items-center">
             <Image
               alt="d"
@@ -62,23 +69,39 @@ const Project = () => {
             provident necessitatibus aliquid
           </p>
           <div className="grid grid-cols-3 pt-10">
-            <div className="flex gap-2 flex-col fontmed items-center justify-center border-r-[1px] border-gray-500">
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0 , y: 50}}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex gap-2 flex-col fontmed items-center justify-center border-r-[1px] border-gray-500"
+            >
               <p className="text-xl">Category</p>
               <p className="text-lg text-redeclic">Alcohol</p>
-            </div>
-            <div className="flex gap-2 flex-col fontmed items-center justify-center ">
+            </motion.div>
+            <motion.div  ref={ref}
+              initial={{ opacity: 0 , y: 50}}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }} className="flex gap-2 flex-col fontmed items-center justify-center ">
               <p className="text-xl">Client</p>
               <p className="text-lg text-redeclic">SBM</p>
-            </div>
-            <div className="flex gap-2 flex-col fontmed items-center justify-center border-l-[1px] border-gray-500">
+            </motion.div>
+            <motion.div  ref={ref}
+              initial={{ opacity: 0 , y: 50}}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, ease: "easeOut" }} className="flex gap-2 flex-col fontmed items-center justify-center border-l-[1px] border-gray-500">
               <p className="text-xl">Brand</p>
               <p className="text-lg text-redeclic">Casablanca Beer</p>
-            </div>
+            </motion.div>
           </div>
         </div>
-        <h1 className="fontmed text-7xl   bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center">
+        <TextAnimate
+          animation="blurInUp"
+          by="character"
+          className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+        >
           Digital Lab
-        </h1>
+        </TextAnimate>
         {/* <div className="flex px-20 py-20">
           <div className="grid grid-cols-3 gap-10">
             <Image
@@ -130,9 +153,13 @@ const Project = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        <h1 className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center">
+        <TextAnimate
+          animation="blurInUp"
+          by="character"
+          className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+        >
           Events
-        </h1>
+        </TextAnimate>
         <div className="px-20 flex flex-col gap-y-5 py-10">
           <h1 className="fontmed text-4xl text-redeclic">
             The Moroccan Spirit

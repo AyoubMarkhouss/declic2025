@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Header from "~/components/header-burger";
+import { TextAnimate } from "~/components/ui/text-animate";
 // import { useRouter } from "next/router";
 
 export const clients = [
@@ -98,14 +99,13 @@ export default function Portfolio() {
       <div className={`${open ? "" : "block"}`}>
         <div className="bigmobile:px-5 laptop:px-36 relative min-h-screen h-full pt-20">
           <div className="h-60  flex flex-col justify-center items-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+            <TextAnimate
+              animation="blurInUp"
+              by="character"
               className="fontbold pb-3 bigmobile:text-3xl text-center laptop:text-8xl desktop:text-9xl text-redeclic"
             >
-              The Lab of Creativity
-            </motion.h1>
+           The Lab Of Creativity
+            </TextAnimate>
             <motion.p
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
