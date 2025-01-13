@@ -16,8 +16,7 @@ export default function Iphone15Pro({
 }: Iphone15ProProps) {
   return (
     <svg
-      width={width}
-      height={height}
+      className="w-full h-auto "
       viewBox={`0 0 ${width} ${height}`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -71,14 +70,14 @@ export default function Iphone15Pro({
       {videoSrc && (
         <foreignObject x="21.25" y="19.25" width="389.5" height="843.5">
           <video
-            className="size-full overflow-hidden rounded-[55.75px] object-cover"
+            className="rounded-[55.75px] object-cover "
             src={videoSrc}
             autoPlay
             loop
             muted
+            
             playsInline
           />
-         
         </foreignObject>
       )}
       <path

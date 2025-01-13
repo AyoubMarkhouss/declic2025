@@ -17,7 +17,7 @@ export default function Home() {
         <Herovideo />
         <Sheepsection />
         <HorizontalScrollCarousel />
-        <Bangers />
+        {/* <Bangers /> */}
         <Footer />
       </div>
     </div>

@@ -10,6 +10,7 @@ import { FaArrowCircleDown, FaStar } from "react-icons/fa";
 import { cn } from "~/utils";
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -22,6 +23,22 @@ const Project = () => {
   const [open, setOpen] = useState<boolean>(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+  const [api, setApi] = React.useState<CarouselApi>();
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
   return (
     <>
       <Header open={open} setOpen={setOpen} />
@@ -30,7 +47,7 @@ const Project = () => {
           <TextAnimate
             animation="blurInUp"
             by="character"
-            className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+            className="fontmed laptop:text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] fontmed justify-center tablet:justify-start text-4xl w-full text-white h-24  px-20 flex  items-center"
           >
             Casablanca Beer
           </TextAnimate>
@@ -45,11 +62,11 @@ const Project = () => {
             {/* <div className="absolute inset-0 bg-black bg-opacity-15 h-96"></div> */}
           </div>
         </div>
-        <div className="flex flex-col gap-y-3 px-52 py-20">
-          <h1 className="fontmed text-4xl">
+        <div className="flex flex-col gap-y-3 px-5 py-10 laptop:px-52 laptop:py-20">
+          <h1 className="fontmed text-center laptop:text-start text-4xl">
             Lorem ipsum dolor sit amet consectetur
           </h1>
-          <p className="text-lg text-justify">
+          <p className=" tablet:text-lg text-justify">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
             voluptate consectetur doloremque, dolor aut repellendus labore velit
             pariatur aliquam quo provident necessitatibus aliquid at ratione
@@ -59,7 +76,7 @@ const Project = () => {
             provident necessitatibus aliquid at ratione magnam laudantium sunt,
             omnis nesciunt.
           </p>
-          <p className="text-lg text-justify">
+          <p className=" tablet:text-lg text-justify">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam
             voluptate consectetur doloremque, dolor aut repellendus labore velit
             pariatur aliquam quo provident necessitatibus aliquid at ratione
@@ -71,36 +88,48 @@ const Project = () => {
           <div className="grid grid-cols-3 pt-10">
             <motion.div
               ref={ref}
-              initial={{ opacity: 0 , y: 50}}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="flex gap-2 flex-col fontmed items-center justify-center border-r-[1px] border-gray-500"
             >
-              <p className="text-xl">Category</p>
-              <p className="text-lg text-redeclic">Alcohol</p>
+              <p className="text-lg">Category</p>
+              <p className="text-md tablet:text-lg text-redeclic  text-center">
+                Alcohol
+              </p>
             </motion.div>
-            <motion.div  ref={ref}
-              initial={{ opacity: 0 , y: 50}}
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut" }} className="flex gap-2 flex-col fontmed items-center justify-center ">
-              <p className="text-xl">Client</p>
-              <p className="text-lg text-redeclic">SBM</p>
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex gap-2 flex-col fontmed items-center justify-center "
+            >
+              <p className="text-lg">Client</p>
+              <p className="text-md tablet:text-lg text-redeclic  text-center">
+                SBM
+              </p>
             </motion.div>
-            <motion.div  ref={ref}
-              initial={{ opacity: 0 , y: 50}}
+            <motion.div
+              ref={ref}
+              initial={{ opacity: 0, y: 50 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, ease: "easeOut" }} className="flex gap-2 flex-col fontmed items-center justify-center border-l-[1px] border-gray-500">
-              <p className="text-xl">Brand</p>
-              <p className="text-lg text-redeclic">Casablanca Beer</p>
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex gap-2 flex-col fontmed items-center justify-center border-l-[1px] border-gray-500"
+            >
+              <p className="text-lg">Brand</p>
+              <p className="text-md tablet:text-lg text-redeclic text-center">
+                Casablanca Beer
+              </p>
             </motion.div>
           </div>
         </div>
         <TextAnimate
           animation="blurInUp"
           by="character"
-          className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+          className="fontmed laptop:text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] fontmed justify-center tablet:justify-start text-4xl w-full text-white h-24  px-20 flex  items-center"
         >
-          Digital Lab
+          Master Visual
         </TextAnimate>
         {/* <div className="flex px-20 py-20">
           <div className="grid grid-cols-3 gap-10">
@@ -133,11 +162,12 @@ const Project = () => {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-6xl my-20 mx-auto"
+          className="w-full max-w-6xl my-20 pl-3 tablet:pl-0 mx-auto"
+          setApi={setApi}
         >
-          <CarouselContent>
+          <CarouselContent className="">
             {items.map((it, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={index} className="laptop:basis-1/3">
                 <div className="p-1">
                   <Image
                     src={it.image}
@@ -150,30 +180,41 @@ const Project = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <div className="hidden tablet:block">
+            <CarouselPrevious />
+            <CarouselNext />
+          </div>
+
+          <div className=" laptop:hidden py-2 text-center text-sm text-muted-foreground">
+            {current} / {count}
+          </div>
         </Carousel>
         <TextAnimate
           animation="blurInUp"
           by="character"
-          className="fontmed text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] text-white h-24  px-20 flex  items-center"
+          className="fontmed laptop:text-7xl  bg-gradient-to-r from-redeclic to-[#b0011c] fontmed justify-center tablet:justify-start text-4xl w-full text-white h-24  px-20 flex  items-center"
         >
-          Events
+          Social Media
         </TextAnimate>
-        <div className="px-20 flex flex-col gap-y-5 py-10">
-          <h1 className="fontmed text-4xl text-redeclic">
-            The Moroccan Spirit
-          </h1>
-          <div className="grid grid-cols-3 ">
-            <div className="flex flex-col justify-center gap-y-5">
-              <p>
+        <div className="px-5 laptop:px-20 flex flex-col gap-y-5  py-10">
+          <div className="grid grid-cols-1 laptop:grid-cols-3 ">
+            {/* <div className="flex flex-col gap-y-5">
+              <h1 className="fontmed text-4xl text-redeclic">
+                The Moroccan Spirit
+              </h1>
+              <p className="text-xl">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Perferendis obcaecati reiciendis nostrum voluptatum omnis,
+                doloremque inventore explicabo labore qui reprehenderit vitae
+              </p>
+              <p className="text-xl">
+                {" "}
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Perferendis obcaecati reiciendis nostrum voluptatum omnis,
                 doloremque inventore explicabo labore qui reprehenderit vitae
                 animi quisquam, adipisci repellat quae itaque similique fugit
-                numquam!
               </p>
-              <p>
+              <p className="text-xl">
                 {" "}
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Perferendis obcaecati reiciendis nostrum voluptatum omnis,
@@ -181,37 +222,45 @@ const Project = () => {
                 animi quisquam, adipisci repellat quae itaque similique fugit
                 numquam!
               </p>
-              <p>
-                {" "}
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Perferendis obcaecati reiciendis nostrum voluptatum omnis,
-                doloremque inventore explicabo labore qui reprehenderit vitae
-                animi quisquam, adipisci repellat quae itaque similique fugit
-                numquam!
-              </p>
-            </div>
+            </div> */}
 
             <Iphone15Pro
-              className="h-[550px] w-full"
+              className="h-[450px] "
               videoSrc="/TMS-baya.mp4"
             />
-            <div className="flex flex-col justify-center gap-y-5">
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Perferendis obcaecati reiciendis nostrum voluptatum omnis,
-                doloremque inventore explicabo labore qui reprehenderit vitae
-                animi quisquam, adipisci repellat quae itaque similique fugit
-                numquam!
-              </p>
-              <p>
-                {" "}
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Perferendis obcaecati reiciendis nostrum voluptatum omnis,
-                doloremque inventore explicabo labore qui reprehenderit vitae
-                animi quisquam, adipisci repellat quae itaque similique fugit
-                numquam!
-              </p>
-            </div>
+            {/* <div className="flex justify-center items-center">
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+                setApi={setApi}
+              >
+                <CarouselContent>
+                  {staticimg.map((jj, index) => (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                        <Image
+                          alt="static"
+                          src={jj.img}
+                          width={1000}
+                          height={1000}
+                          className="w-full"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <div className="hidden tablet:block">
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </div>
+                <div className=" laptop:hidden py-2 text-center text-sm text-muted-foreground">
+                  {current} / {count}
+                </div>
+              </Carousel>
+            </div> */}
           </div>
         </div>
       </div>
@@ -229,4 +278,10 @@ const items = [
   { id: 4, content: "Item 4", image: "/gold.jpg" },
   { id: 5, content: "Item 5", image: "/gold.jpg" },
   { id: 6, content: "Item 6", image: "/gold.jpg" },
+];
+
+const staticimg = [
+  { img: "/casablancabeer.jpg" },
+  { img: "/stork.jpg" },
+  { img: "/casablancabeer.jpg" },
 ];

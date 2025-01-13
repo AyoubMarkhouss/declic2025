@@ -13,10 +13,10 @@ export default function Sheepsection() {
           
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-x-5  px-20">
+      <div className="relative grid grid-cols-1 md:grid-cols-4 tablet:gap-x-5 px-5 tablet:px-20">
         {/* Left Column: Heading */}
-        <div className="col-span-1 pt-20">
-          <h1 className="text-5xl absolute z-20 font-black leading-tight tracking-tight">
+        <div className="col-span-1 pt-5 tablet:pt-20">
+          <h1 className="text-6xl tablet:text-5xl text-center laptop:text-start absolute z-20 font-black leading-tight tracking-tight">
             WHEN THE WORLD <br /> <span className="">ZIGS,</span>{" "}
             <span className="text-redeclic">ZAG.</span>
           </h1>
@@ -26,7 +26,7 @@ export default function Sheepsection() {
         <div className="col-span-2 relative "></div>
 
         {/* Right Column: Paragraphs */}
-        <div className="col-span-1 z-30 text-white text-md flex flex-col justify-center">
+        <div className="col-span-1 z-30 text-white text-justify laptop:text-start text-md flex flex-col justify-center">
           <p className="">
             It’s easy to go with the grain, stick within the category codes and
             make your brand as frictionless as possible. It feels safe. And in
@@ -42,6 +42,7 @@ export default function Sheepsection() {
           </p>
           <p className="text-black font-bold ">Welcome to BBH.</p>
         </div>
+        <div className="block laptop:hidden bg-black/30 absolute h-full w-full"></div>
       </div>
     </div>
   );

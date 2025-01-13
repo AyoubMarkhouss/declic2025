@@ -50,7 +50,7 @@ const Header: React.FC<{
     <div
       className={cn(
         "fixed top-0 z-50 w-full h-20",
-        viva && viva > 500
+        viva && viva > 100
           ? "transition-all transform ease-in-out duration-500  bg-white/100 backdrop-blur-md shadow-md"
           : "transition-all transform ease-in-out duration-500 bg-transparent"
       )}
@@ -68,14 +68,14 @@ const Header: React.FC<{
           </motion.div>
         </AnimatePresence>
       )}
-      <div className="flex fixed z-50 top-0 left-0 w-full items-center justify-between py-6 px-10">
-        <div>
+      <div className="flex fixed z-50 top-0 left-0  h-20 w-full items-center justify-between px-10">
+        <div className="">
           <Image
             alt="logo"
             src="/declic-red.png"
             width={1000}
             height={1000}
-            className="w-20 z-50"
+            className="w-20"
           />
         </div>
         <div className="z-50 flex gap-x-6 items-center">
@@ -93,8 +93,14 @@ const Header: React.FC<{
               }}
             >
               <Link
-                className="text-black  z-0"
-                href={text === "Home" ? "/portfolio?section=work" : "/"}
+                className="text-black z-0 hidden laptop:block"
+                href={
+                  text === "Home"
+                    ? "/portfolio?section=work"
+                    : text === "About us"
+                    ? "/"
+                    : "/contact"
+                }
               >
                 {text}
               </Link>
@@ -151,9 +157,8 @@ const SlideTabs: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number | null>(null); // No active tab initially
 
   const pages = [
-    { name: "Home", href: "/" },
-    { name: "Compagnes", href: "/portfolio?section=work" },
-    { name: "About us", href: "/about" },
+    { name: "Home", href: "/portfolio?section=work" },
+    { name: "About us", href: "/" },
     { name: "Contact", href: "/contact" },
   ];
   return (
@@ -175,7 +180,7 @@ const SlideTabs: React.FC = () => {
             setActiveTab(index);
           }}
         >
-          <a className="w-full" href={page.href}>
+          <a className="w-full text-6xl tablet:text-8xl" href={page.href}>
             {page.name}
           </a>
         </Tab>

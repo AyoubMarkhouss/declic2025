@@ -110,7 +110,7 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="text-center max-w-[60%] pb-5"
+              className="text-center text-gray-500 text-sm tablet:text-lg laptop:max-w-[70%] pb-5"
             >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
               reprehenderit sit iste, dolores dolorum molestiae dicta explicabo!{" "}
@@ -153,29 +153,29 @@ export default function Portfolio() {
                   key={g.title}
                 >
                   <Image
-                    className="opacity-80 hover:scale-105 hover:opacity-100 object-cover transition-all duration-300 transform"
+                    className="laptop:opacity-80 hover:border-4 border-redeclic laptop:hover:scale-105 laptop:hover:opacity-100 object-cover transition-all duration-300 transform"
                     alt="500"
                     src={g.image}
                     width={500}
                     height={500}
                   />
-                  <div className="flex items-center group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
+                  <div className="flex items-center laptop:group-hover:scale-105 transition-all duration-300 transform justify-between pt-2">
                     <h1 className="fontmed group-hover:text-redeclic text-lg">
                       {g.title}
                     </h1>
                     <FaChevronRight className="group-hover:fill-redeclic" />
                   </div>
-                  <p className="text-sm group-hover:scale-105 transition-all duration-300 transform">
+                  <p className="text-sm laptop:group-hover:scale-105 transition-all duration-300 transform">
                     {g.category}
                   </p>
-                  <p className="text-xs group-hover:scale-105 transition-all duration-300 transform text-gray-400">
+                  <p className="text-xs laptop:group-hover:scale-105 transition-all duration-300 transform text-gray-400">
                     {g.date}
                   </p>
                 </motion.div>
               ))}
               {visibleWorks < work.length && (
                 <button
-                  className="fontmed absolute -bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-redeclic text-white"
+                  className="fontmed absolute laptop:-bottom-20 left-1/2 transform -translate-x-1/2 px-6 py-2 bg-redeclic text-white"
                   onClick={loadMoreWorks}
                 >
                   View More
@@ -187,7 +187,7 @@ export default function Portfolio() {
           )}
 
           {section === "client" ? (
-            <div className="grid grid-cols-4 gap-6 px-20 justify-center items-center">
+            <div className="grid grid-cols-2 laptop:grid-cols-4 gap-6 px-5 laptop:px-20 justify-center items-center">
               {clients.map((client, index) => (
                 <Link
                   href={`/portfolio/client/${client.title
@@ -200,7 +200,7 @@ export default function Portfolio() {
                 >
                   <Image
                     alt="img"
-                    className="w-40 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
+                    className="w-20 tablet:w-40 filter hover:scale-105 grayscale group-hover:filter-none transition-all duration-300"
                     width={1000}
                     height={1000}
                     src={client.image}
