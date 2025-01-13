@@ -223,11 +223,10 @@ const Project = () => {
                 numquam!
               </p>
             </div> */}
+            <div className="relative">
+              <Iphone15Pro className="w-52 h-full" videoSrc="/TMS-baya.mp4" />
+            </div>
 
-            <Iphone15Pro
-              className="h-[450px] "
-              videoSrc="/TMS-baya.mp4"
-            />
             {/* <div className="flex justify-center items-center">
               <Carousel
                 opts={{

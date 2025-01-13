@@ -104,16 +104,19 @@ export default function Portfolio() {
               by="character"
               className="fontbold pb-3 bigmobile:text-3xl text-center laptop:text-8xl desktop:text-9xl text-redeclic"
             >
-           The Lab Of Creativity
+              The Lab Of Creativity
             </TextAnimate>
             <motion.p
               initial={{ opacity: 0, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="text-center text-gray-500 text-sm tablet:text-lg laptop:max-w-[70%] pb-5"
+              className="text-center text-gray-500 text-sm tablet:text-md laptop:max-w-[70%] pb-5"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-              reprehenderit sit iste, dolores dolorum molestiae dicta explicabo!{" "}
+              Chez Declic Agency, nous avons eu le privilège de travailler avec
+              des marques et des clients qui partagent notre vision audacieuse
+              de la communication. Chaque projet est une opportunité de
+              repousser les limites, d’innover et de créer des
+              campagnes mémorables.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -314,8 +317,8 @@ export default function Portfolio() {
             </div>
           </div> */}
           <div className="bg-black/30 w-screen h-[470px] absolute"></div>
-          <h1 className="fontreg text-white text-center text-4xl z-10">
-            Innovative Minds, Creative Solutions <br /> Discover Déclic Agency
+          <h1 className="fontreg text-white text-center text-5xl z-10">
+            THE GOAT OF MOROCCO
           </h1>
           <button className="z-10 border-2 text-white text-xl border-white hover:bg-redeclic hover:border-redeclic transition-all transform delay-100 px-5 py-3">
             <a href="/">Discover</a>

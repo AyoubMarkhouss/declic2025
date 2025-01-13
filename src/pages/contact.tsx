@@ -1,4 +1,7 @@
+import Link from "next/link";
 import { FormEvent, useState } from "react";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { ImYoutube } from "react-icons/im";
 import Footer from "~/components/footer";
 import Header from "~/components/header-burger";
 import Bubble from "~/components/icons/bubble";
@@ -138,7 +141,9 @@ export default function Page() {
                     Chat with us
                   </p>
                   {/* <p className="leading-7">Our friendly team is here to help</p> */}
-                  <p className="text-lg font-semibold">team@contact.com</p>
+                  <p className="text-lg font-semibold">
+                    contact@declicagency.ma
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -150,7 +155,10 @@ export default function Page() {
                     Visit us
                   </p>
                   {/* <p className="leading-7">Come say hello at Our office HQ</p> */}
-                  <p className="text-lg font-semibold">Address will be here</p>
+                  <p className="text-lg font-semibold">
+                    Rue de L’Adjudant Jean Chelle Quartier Oasis <br />{" "}
+                    Casablanca –Maroc
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -162,7 +170,9 @@ export default function Page() {
                     Call us
                   </p>
                   {/* <p className="leading-7">Mon-Fri from 9:00 to 18:00</p> */}
-                  <p className="text-lg font-semibold">+212 6800-93003</p>
+
+                  <p className=" text-lg font-semibold">+212 (0) 522 206 546</p>
+                  <p className=" text-lg font-semibold">+212 (0) 522 206 544</p>
                 </div>
               </div>
             </div>
@@ -172,16 +182,43 @@ export default function Page() {
               loading="lazy"
             ></iframe>
             {/* social media */}
-            <div className="flex items-center gap-3">
-              <button className="border p-2 rounded-md">
-                <Facebook className="size-7 fill-redeclic" />
-              </button>
-              <button className="border p-2 rounded-md">
-                <LinkedIn className="size-7 fill-redeclic" />
-              </button>
-              <button className="border p-2 rounded-md">
-                <Youtube className="size-7 fill-redeclic" />
-              </button>
+            <div className="flex items-center gap-x-4">
+              <Link
+                href="https://www.instagram.com/declic_agency/"
+                className="border-2 rounded-full p-1.5  group hover:bg-white"
+              >
+                <FaInstagram
+                  size={20}
+                  className="fill-redeclic group-hover:fill-black  transition-all duration-300 transform"
+                />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/d%C3%A9clic-agency/about/"
+                className="border-2 rounded-full p-1.5 group hover:bg-white"
+              >
+                <FaLinkedin
+                  size={20}
+                  className="fill-redeclic group-hover:fill-black  transition-all duration-300 transform"
+                />
+              </Link>
+              <Link
+                href="https://www.facebook.com/declicagency"
+                className="border-2 rounded-full p-1.5 group hover:bg-white"
+              >
+                <FaFacebook
+                  size={20}
+                  className="fill-redeclic group-hover:fill-black  transition-all duration-300 transform"
+                />
+              </Link>
+              <Link
+                href="https://www.youtube.com/channel/UC6wt8nivSSkdNWymLrEtj0g/featured"
+                className="border-2 rounded-full p-1.5 group hover:bg-white"
+              >
+                <ImYoutube
+                  size={20}
+                  className="fill-redeclic group-hover:fill-black  transition-all duration-300 transform"
+                />
+              </Link>
             </div>
           </div>
           <form
