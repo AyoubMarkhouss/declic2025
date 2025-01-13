@@ -198,7 +198,7 @@ const Project = () => {
         </TextAnimate>
         <div className="px-5 laptop:px-20 flex flex-col gap-y-5  py-10">
           <div className="grid grid-cols-1 laptop:grid-cols-3 ">
-            {/* <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-5">
               <h1 className="fontmed text-4xl text-redeclic">
                 The Moroccan Spirit
               </h1>
@@ -222,12 +222,12 @@ const Project = () => {
                 animi quisquam, adipisci repellat quae itaque similique fugit
                 numquam!
               </p>
-            </div> */}
-            <div className="relative">
-              <Iphone15Pro className="w-52 h-full" videoSrc="/TMS-baya.mp4" />
+            </div>
+            <div className="flex items-center justify-center">
+              <Iphone15Pro className="size-[450px]" videoSrc="/TMS-baya.mp4" />
             </div>
 
-            {/* <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center">
               <Carousel
                 opts={{
                   align: "start",
@@ -259,7 +259,7 @@ const Project = () => {
                   {current} / {count}
                 </div>
               </Carousel>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
