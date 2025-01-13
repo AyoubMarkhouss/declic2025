@@ -38,8 +38,8 @@ export default function Sheepsection() {
             Notre recette ? Des idées audacieuses, des campagnes qui marquent et
             une vision claire : transformer vos projets en véritables succès. On
             allie originalité et stratégie pour créer des concepts qui résonnent
-            et captivent. Ne cherchez pas le déclic... (vous l’avez
-            trouvé en gras).
+            et captivent. Ne cherchez pas le déclic... vous l’avez
+            trouvé (en gras).
           </p>
           
         </div>

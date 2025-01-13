@@ -32,7 +32,7 @@ const Footer = () => {
           src="/declic-white.png"
           height={1500}
           width={1500}
-          className="w-52"
+          className="w-40"
         />
       </motion.div>
       <div className="col-span-4 flex justify-between border-t-2 pt-10">
