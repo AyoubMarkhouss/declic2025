@@ -158,6 +158,7 @@ const SlideTabs: React.FC = () => {
 
   const pages = [
     { name: "Home", href: "/portfolio?section=work" },
+    { name: "Campagnes", href: "/portfolio?section=work" },
     { name: "About us", href: "/" },
     { name: "Contact", href: "/contact" },
   ];
