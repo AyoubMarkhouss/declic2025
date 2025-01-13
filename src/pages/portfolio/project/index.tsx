@@ -197,9 +197,9 @@ const Project = () => {
           Social Media
         </TextAnimate>
         <div className="px-5 laptop:px-20 flex flex-col gap-y-5  py-10">
-          <div className="grid grid-cols-1 laptop:grid-cols-3 ">
-            <div className="flex flex-col gap-y-5">
-              <h1 className="fontmed text-4xl text-redeclic">
+          <div className="grid grid-cols-1 laptop:grid-cols-3 gap-y-5">
+            <div className="flex flex-col text-justify laptop:text-start gap-y-5">
+              <h1 className="fontmed text-center laptop:text-start text-4xl text-redeclic">
                 The Moroccan Spirit
               </h1>
               <p className="text-xl">
